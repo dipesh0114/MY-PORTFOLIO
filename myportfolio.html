@@ -113,6 +113,66 @@
     .modal.open{display:grid}
     .modal .modal-card{width:100%;max-width:900px;background:var(--card);padding:20px;border-radius:12px}
 
+    .highlight {
+  background: linear-gradient(90deg, #7c3aed, #06b6d4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.avatar-card {
+  background: var(--glass);
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+
+.photo-wrapper {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid var(--accent);
+  box-shadow: 0 4px 15px rgba(124,58,237,0.4);
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.name-role {
+  text-align: center;
+  margin-top: 14px;
+}
+
+.role {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.socials {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(124,58,237,0.4);
+}
+
+.project:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  transition: 0.3s ease;
+}
+
+
     /* responsive */
     @media (max-width:980px){
       .hero{grid-template-columns:1fr;}
@@ -182,27 +242,22 @@
 
         </div>
 
-        <aside class="avatar">
-          <div>
-            <div class="name">Dipesh Patro</div>
-            <div class="role">Python/MySql/LangChain/NLTK/HTML/CSS</div>
-            <div style="margin-top:10px;color:var(--muted)">I care about performance and robust developer experiences.
-            </div>
-          </div>
-
-          <div style="display:flex;justify-content:space-between;align-items:center">
-            <div class="socials">
-              <a class="chip" href="https://github.com/dipesh0114">GitHub</a>
-              <a class="chip" href="www.linkedin.com/in/dipesh-patro-07dp">LinkedIn</a>
-              
-            </div>
-            <div style="text-align:right">
-              <div style="font-weight:800;font-size:20px">Fresher</div>
-              <div class="muted" style="font-size:12px"></div>
-            </div>
-          </div>
-        </aside>
-      </section>
+      <!-- Photo section -->
+  <aside class="avatar-card">
+    <div class="photo-wrapper">
+      <img src="photo (1).jpg" alt="Dipesh Patro" class="profile-photo">
+    </div>
+    <div class="name-role">
+      <h3>Dipesh Patro</h3>
+      <p class="role">Python / MySQL / LangChain / HTML / CSS</p>
+      <p class="muted small">I care about performance and robust developer experiences.</p>
+    </div>
+    <div class="socials">
+      <a class="chip" href="https://github.com/dipesh0114" target="_blank">GitHub</a>
+      <a class="chip" href="https://www.linkedin.com/in/dipesh-patro-07dp" target="_blank">LinkedIn</a>
+    </div>
+  </aside>
+</section>
 
       <section id="about" class="fade-in">
         <div class="grid-2">
