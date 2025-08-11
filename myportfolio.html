@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Professional portfolio — projects, skills, blog and contact." />
+  <title>Dipesh — Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg: #0f1724;
+      --card: #0b1220;
+      --muted: #98a0b3;
+      --accent: #7c3aed;
+      --glass: rgba(255,255,255,0.04);
+      --radius: 14px;
+      color-scheme: dark;
+      --max-width: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: linear-gradient(180deg, #071025 0%, #071827 60%);
+      color:#e6edf3;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.5;
+      padding:32px 20px;
+      display:flex;
+      justify-content:center;
+    }
+
+    .container{
+      width:100%;
+      max-width:var(--max-width);
+      display:grid;
+      gap:28px;
+    }
+
+    header{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#06b6d4);
+      display:grid;place-items:center;font-weight:700;color:#051024;font-size:18px
+    }
+    nav{display:flex;gap:12px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:8px;font-weight:600}
+    nav a:hover{color:#fff;background:rgba(255,255,255,0.03)}
+
+    .controls{display:flex;gap:8px;align-items:center}
+    .btn{
+      background:var(--accent);border:none;color:white;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer;box-shadow:0 6px 20px rgba(124,58,237,0.18)
+    }
+    .ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer}
+
+    /* Hero */
+    .hero{
+      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.00));
+      padding:28px;border-radius:var(--radius);display:grid;grid-template-columns:1fr 360px;gap:22px;align-items:center
+    }
+    .intro h1{font-size:32px;margin:0 0 8px}
+    .intro p{color:var(--muted);margin:0 0 16px}
+    .actions{display:flex;gap:10px}
+
+    .avatar{
+      background:linear-gradient(135deg,#0ea5a1 0%, #7c3aed 100%);
+      height:320px;border-radius:12px;padding:18px;display:flex;flex-direction:column;justify-content:space-between
+    }
+    .avatar .name{font-size:20px;font-weight:700}
+    .avatar .role{color:var(--muted);margin-top:6px}
+    .socials{display:flex;gap:10px}
+    .chip{background:var(--glass);padding:8px 10px;border-radius:10px;color:var(--muted);font-weight:600}
+
+    /* Sections */
+    section{background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);padding:22px;border-radius:var(--radius)}
+    .grid-2{display:grid;grid-template-columns:1fr 380px;gap:20px}
+
+    /* Cards */
+    .card{background:rgba(255,255,255,0.02);padding:16px;border-radius:12px}
+    .projects{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .project{background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);padding:14px;border-radius:10px;cursor:pointer;border:1px solid rgba(255,255,255,0.02)}
+    .project h4{margin:0 0 6px}
+    .project p{margin:0;color:var(--muted);font-size:13px}
+
+    .skills{display:flex;flex-wrap:wrap;gap:8px}
+    .skill{background:rgba(255,255,255,0.03);padding:8px 10px;border-radius:10px;font-weight:600;color:var(--muted)}
+
+    /* Timeline */
+    .timeline{position:relative;padding-left:18px}
+    .timeline:before{content:"";position:absolute;left:6px;top:0;width:2px;height:100%;background:rgba(255,255,255,0.03)}
+    .timeline-item{position:relative;padding:12px 0 12px 18px}
+    .timeline-item:before{content:"";position:absolute;left:-7px;top:20px;width:12px;height:12px;border-radius:6px;background:var(--accent);box-shadow:0 6px 18px rgba(124,58,237,0.12)}
+
+    /* Contact */
+    form{display:grid;gap:8px}
+    input,textarea,select{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:10px;border-radius:8px;color:inherit}
+    textarea{min-height:120px}
+
+    footer{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:14px}
+
+    /* Modal */
+    .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(2,6,23,0.6);z-index:60;padding:20px}
+    .modal.open{display:grid}
+    .modal .modal-card{width:100%;max-width:900px;background:var(--card);padding:20px;border-radius:12px}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .grid-2{grid-template-columns:1fr}
+      .projects{grid-template-columns:1fr}
+    }
+
+    @media (max-width:520px){
+      body{padding:20px 14px}
+      .logo{width:40px;height:40px}
+      header{gap:8px}
+    }
+
+    /* small animations */
+    .fade-in{animation:fadeIn .6s ease both}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+    /* Utility */
+    .muted{color:var(--muted)}
+    .center{display:grid;place-items:center}
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <header>
+      <div class="brand">
+        <div class="logo">Dp</div>
+        <div>
+          <div style="font-weight:700">Dipesh Patro</div>
+          <div class="muted" style="font-size:13px">Computer Science(Data Science) </div>
+        </div>
+      </div>
+
+      <nav aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="controls">
+        <button class="ghost" id="theme-toggle" aria-pressed="false" title="Toggle light/dark">🌙</button>
+        <a class="btn" href="#contact">Hire me</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero fade-in" aria-labelledby="hero-heading">
+        <div class="intro">
+          <h1 id="hero-heading">Hi — I'm <span style="color:var(--accent)">Dipesh</span>.</h1>
+          <p>Motivated Computer Science undergraduate with solid experience in Python programming and hands-on exposureto generative AI projects. Adept at writing clean, efficient code and utilizing cutting-edge AI tools and models tosolve real-world problems.
+          </p>
+
+          <div class="actions">
+            <a class="btn" href="https://github.com/dipesh0114" target="_blank">See Projects</a>
+            <a class="ghost" href="Dipesh's Resume.pdf" download="Dipesh_Patro_CV.pdf">Download CV</a>
+
+          </div>
+
+          <div style="margin-top:16px;display:flex;gap:12px;align-items:center">
+            <div class="chip">Available for hire</div>
+            <div class="muted"> • </div>
+            <div class="muted">Based in India</div>
+          </div>
+
+        </div>
+
+        <aside class="avatar">
+          <div>
+            <div class="name">Dipesh Patro</div>
+            <div class="role">Python/MySql/LangChain/NLTK/HTML/CSS</div>
+            <div style="margin-top:10px;color:var(--muted)">I care about performance and robust developer experiences.
+            </div>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <div class="socials">
+              <a class="chip" href="https://github.com/dipesh0114">GitHub</a>
+              <a class="chip" href="www.linkedin.com/in/dipesh-patro-07dp">LinkedIn</a>
+              
+            </div>
+            <div style="text-align:right">
+              <div style="font-weight:800;font-size:20px">Fresher</div>
+              <div class="muted" style="font-size:12px"></div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="fade-in">
+        <div class="grid-2">
+          <div>
+            <h2>About</h2>
+            <p class="muted">I'm a computer engineer who loves to code. I take product problems seriously and ship solutions that scale.
+            </p>
+
+            <div style="margin-top:14px" class="card">
+              <h3>Selected highlights</h3>
+              <ul class="muted">
+                <li>Head, Networking Club</li>
+                <li>Best Community Volunteer, NxtWave Technologies.</li>
+                
+              </ul>
+            </div>
+
+            <div style="margin-top:12px" class="card">
+              <h3>What I love</h3>
+              <div class="skills" style="margin-top:8px">
+                <div class="skill">Python</div>
+                <div class="skill">MYSQL</div>
+                <div class="skill">GenAI</div>
+                <div class="skill">HTML</div>
+                <div class="skill">CSS</div>
+                <div class="skill">Problem_solving</div>
+                <div class="skill">Communication</div>
+              </div>
+            </div>
+          </div>
+
+          <aside>
+            <div class="card">
+              <h3>Contact</h3>
+              <p class="muted">Email: <a href="dipeshpatro@gmail.com">dipeshpatro@gmail.com</a></p>
+              <p class="muted">Open to full-time</p>
+
+              <div style="margin-top:12px">
+                <h4>Quick stats</h4>
+                <div style="display:flex;gap:8px;margin-top:8px">
+                  <div class="chip">repos: 21</div>
+                  <!-- <div class="chip"></div> -->
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px" class="card">
+              <h3>Education</h3>
+              <p class="muted">B.Tech — Computer Science(Data Science)</p>
+              <p class="muted">GITA Autonomous College — 2021 — 2025</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="projects" class="fade-in">
+        <h2>Projects</h2>
+        <p class="muted">A mix of products. Click a project to see details.</p>
+
+        <div style="margin:12px 0;display:flex;gap:8px">
+          <button class="ghost" data-filter="all">All</button>
+          <button class="ghost" data-filter="web">Python</button>
+          <button class="ghost" data-filter="mobile">GenAI</button>
+          <!-- <button class="ghost" data-filter="oss">Open-source</button> -->
+        </div>
+
+        <div class="projects" id="projects-grid">
+          <article class="project" data-tags="web" tabindex="0" data-title="DesignSystem" data-desc="A component library with theming & docs" data-url="https://github.com/dipesh0114/Text-to-Sql-LLM-app">
+            <h4>Text-to-SQL LLM App</h4>
+            <p class="muted">Developed an end-to-end natural-language-to-SQL application using Google Gemini and Python.</p>
+          </article>
+
+          <article class="project" data-tags="web,oss" tabindex="0" data-title="PerfMonitor" data-desc="A tiny library to measure web vitals" data-url="https://github.com/dipesh0114/Text-Summarization-Using-Langchain">
+            <h4>Text Summarization Tool</h4>
+            <p class="muted">Designed and implemented a flexible text summarization tool that explores multiple strategies.</p>
+          </article>
+
+          <article class="project" data-tags="mobile" tabindex="0" data-title="ShopPWA" data-desc="E-commerce progressive web app" data-url="https://github.com/dipesh0114/GenAI---LinkedIn-Post-Generator">
+            <h4>LinkedIn Post Generator Tool</h4>
+            <p class="muted">Built a Generative AI tool that converts user inputs into polished LinkedIn posts using Llama 3.2.</p>
+          </article>
+
+          <article class="project" data-tags="web" tabindex="0" data-title="DevTool" data-desc="CLI & web UI that improves developer DX" data-url="https://github.com/dipesh0114/basic-student-management">
+            <h4>Student Management System</h4>
+            <p class="muted">Student record system using Python and MySQL to perform CRUD operations.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="skills" class="fade-in">
+        <h2>Skills & Tools</h2>
+        <div style="display:flex;gap:18px;margin-top:12px">
+          <div style="flex:1" class="card">
+            <h3>Core</h3>
+            <div class="skills" style="margin-top:8px">
+              <div class="skill">Python</div>
+              <div class="skill">NLTK</div>
+              <div class="skill">Numpy</div>
+              <div class="skill">Django</div>
+              <div class="skill">Langchain</div>
+            </div>
+          </div>
+
+          <div style="width:340px" class="card">
+            <h3>Tools</h3>
+            <div class="skills" style="margin-top:8px">
+              <div class="skill">Git</div>
+              <div class="skill">Vercel</div>
+              <div class="skill">Docker</div>
+              <!-- <div class="skill">Cypress</div> -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" class="fade-in">
+        <h2>Work & timeline</h2>
+        <div class="card timeline" style="margin-top:12px">
+          <div class="timeline-item">
+            <strong>FRONTEND DEVELOPMENT INTERN AT PRAKRIKA TECHNOLOGY</strong>
+            <div class="muted">May 2024 -Jul 2024</div>
+            <p class="muted">Developed a system leveraging geo-fencing technology to enhance employee safety.</p>
+          </div>
+
+          <!-- <div class="timeline-item">
+            <strong>Frontend Engineer — Company B</strong>
+            <div class="muted">2020 — 2022</div>
+            <p class="muted">Built PWA and improved SEO & Core Web Vitals.</p>
+          </div> -->
+        </div>
+      </section>
+
+      <section id="contact" class="fade-in">
+        <h2>Contact</h2>
+        <div style="display:grid;grid-template-columns:1fr 340px;gap:18px;margin-top:12px">
+          <div class="card">
+            <form id="contact-form" action="#" onsubmit="return submitContact(event)">
+              <label class="muted">Name
+                <input id="name" required placeholder="Your name" />
+              </label>
+
+              <label class="muted">Email
+                <input id="email" type="email" required placeholder="you@example.com" />
+              </label>
+
+              <label class="muted">Message
+                <textarea id="message" required placeholder="Your Message"></textarea>
+              </label>
+
+              <div style="display:flex;gap:8px;margin-top:8px">
+                <button class="btn" type="submit">Send</button>
+                <button class="ghost" type="button" onclick="resetForm()">Reset</button>
+              </div>
+
+              <div id="form-status" class="muted" style="margin-top:8px"></div>
+            </form>
+          </div>
+
+          <aside class="card">
+            <h3>Let's talk</h3>
+            <p class="muted">Prefer email? <a href="dipeshpatro@gmail.com">dipeshpatro@gmail.com</a></p>
+
+            <div style="margin-top:12px">
+              <h4>Availability</h4>
+              <p class="muted">Open to both on-site and remote work</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <footer>
+        <div>© <span id="year"></span> Dipesh</div>
+        <div class="muted">Built with ❤️ — HTML,CSS,JS 
+      </footer>
+
+    </main>
+
+  </div>
+
+  <!-- Project modal -->
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-card">
+      <button style="float:right" onclick="closeModal()">✕</button>
+      <h3 id="modal-title">Project</h3>
+      <p id="modal-desc" class="muted">Description</p>
+      <div style="margin-top:12px"><a id="modal-link" class="btn" href="#" target="_blank">Open project</a></div>
+      <div style="margin-top:12px" id="modal-extra" class="muted"></div>
+    </div>
+  </div>
+
+  <script>
+    // small helpers
+    const yearEl = document.getElementById('year');
+    yearEl.textContent = new Date().getFullYear();
+
+    // Theme toggle (simple)
+    const themeToggle = document.getElementById('theme-toggle');
+    themeToggle.addEventListener('click', ()=>{
+      const pressed = themeToggle.getAttribute('aria-pressed') === 'true';
+      themeToggle.setAttribute('aria-pressed', String(!pressed));
+      if(!pressed){
+        document.documentElement.style.setProperty('--bg','#fafafa');
+        document.documentElement.style.setProperty('--card','#ffffff');
+        document.documentElement.style.setProperty('--muted','#55607a');
+        document.documentElement.style.setProperty('--accent','#7c3aed');
+        document.body.style.color='#061027';
+      } else {
+        document.documentElement.style.removeProperty('--bg');
+        document.documentElement.style.removeProperty('--card');
+        document.documentElement.style.removeProperty('--muted');
+        document.documentElement.style.removeProperty('--accent');
+        document.body.style.color='';
+      }
+    });
+
+    // Project modal
+    const projectsGrid = document.getElementById('projects-grid');
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalLink = document.getElementById('modal-link');
+    const modalExtra = document.getElementById('modal-extra');
+
+    projectsGrid.addEventListener('click', (e)=>{
+      const card = e.target.closest('.project');
+      if(!card) return;
+      openProject(card);
+    });
+    projectsGrid.addEventListener('keydown', (e)=>{
+      if(e.key === 'Enter'){
+        const card = e.target.closest('.project');
+        if(card) openProject(card);
+      }
+    });
+
+    function openProject(card){
+      modalTitle.textContent = card.dataset.title || 'Project';
+      modalDesc.textContent = card.dataset.desc || '';
+      modalLink.href = card.dataset.url || '#';
+      modalExtra.innerHTML = `<div class=\"muted\">Tags: ${card.dataset.tags}</div>`;
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden','false');
+    }
+    function closeModal(){
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden','true');
+    }
+
+    // Filtering projects
+    const filterButtons = document.querySelectorAll('[data-filter]');
+    filterButtons.forEach(btn=>btn.addEventListener('click', ()=>{
+      const key = btn.dataset.filter;
+      document.querySelectorAll('.project').forEach(p=>{
+        if(key === 'all') { p.style.display = '' } else {
+          const tags = p.dataset.tags.split(',');
+          p.style.display = tags.includes(key) ? '' : 'none';
+        }
+      });
+    }));
+
+    // Simple contact form handler (replace with Formspree / API endpoint in production)
+    function submitContact(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const status = document.getElementById('form-status');
+      if(!name || !email || !message){ status.textContent = 'Please fill all fields.'; return false }
+
+      // Fake send flow
+      status.textContent = 'Sending...';
+      setTimeout(()=>{
+        status.textContent = 'Message sent — I will reply soon!';
+        document.getElementById('contact-form').reset();
+      },900);
+      return false;
+    }
+    function resetForm(){
+      document.getElementById('contact-form').reset();
+    }
+
+    // Accessibility small enhancement: close modal with ESC
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeModal();
+    });
+
+    // Small progressive enhancement: reveal animations on scroll
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(ent=>{
+        if(ent.isIntersecting) ent.target.classList.add('fade-in');
+      });
+    },{threshold:0.08});
+    document.querySelectorAll('section, .hero, footer').forEach(el=>io.observe(el));
+
+    // End of script
+  </script>
+</body>
+</html>
