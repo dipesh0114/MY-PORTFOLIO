@@ -9,6 +9,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
   <style>
     :root {
@@ -670,6 +671,40 @@
       transform: translateY(-2px);
     }
 
+    /* Gradient animated text for your name */
+.accent-text {
+  background: linear-gradient(270deg, #ff6a00, #ee0979, #00c6ff, #0072ff);
+  background-size: 800% 800%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientMove 6s ease infinite;
+  font-weight: bold;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Smooth text reveal animations */
+.animated-heading {
+  font-size: 2.8rem;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.animated-subtext {
+  font-size: 1.2rem;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateY(30px);
+  max-width: 650px;
+  line-height: 1.6;
+}
+
+
 
 
 
@@ -761,12 +796,14 @@
     <main>
       <section class="hero fade-in" aria-labelledby="hero-heading">
         <div class="intro">
-          <h1 id="hero-heading">Hi — I'm <span style="color:var(--accent)">Dipesh</span>.</h1>
-          <p>Motivated Computer Science undergraduate with solid experience in Python programming and hands-on
-            exposureto generative AI projects. Adept at writing clean, efficient code and utilizing cutting-edge AI
-            tools and models tosolve real-world problems.
-          </p>
-
+          <h1 id="hero-heading" class="animated-heading">
+  Hi — I'm <span class="accent-text">Dipesh</span>.
+</h1>
+<p class="animated-subtext">
+  🚀 Motivated Computer Science undergraduate with solid experience in <strong>Python</strong>, 
+  <strong>MySQL</strong>, and hands-on exposure to cutting-edge <strong>Generative AI</strong> projects. 
+  Adept at writing clean, efficient code and leveraging AI tools to solve real-world challenges.
+</p>
           <div class="actions">
             <a class="btn github-btn" href="https://github.com/dipesh0114" target="_blank">
               <img src="25231.png" alt="GitHub" class="github-icon">
@@ -1171,6 +1208,16 @@
       document.body.classList.toggle("dark-mode");
       this.innerHTML = document.body.classList.contains("dark-mode") ? "☀️" : "🌙";
     });
+
+    gsap.fromTo(".animated-heading", 
+    {opacity: 0, y: 40}, 
+    {opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.2}
+  );
+
+  gsap.fromTo(".animated-subtext", 
+    {opacity: 0, y: 30}, 
+    {opacity: 1, y: 0, duration: 1, ease: "power2.out", delay: 0.6}
+  );
 
     // End of script
   </script>
